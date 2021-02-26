@@ -1,5 +1,6 @@
 # Friday Night Funkin Flipped
-Literally just changes the game so that notes come from the top rather than the bottom
+My small brain cannot comprehend how to read notes going from bottom to the top so I changed them to go top to bottom
+![](https://gfycat.com/dopeyinsignificanterne.gif)
 
 
 
