@@ -1,6 +1,8 @@
 # Friday Night Funkin Flipped
 My small brain cannot comprehend how to read notes going from bottom to the top so I changed them to go top to bottom
-![](https://gfycat.com/dopeyinsignificanterne.gif)
+
+
+![](https://i.imgur.com/xzV9ZcG.gif)
 
 
 
