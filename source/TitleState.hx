@@ -266,28 +266,28 @@ class TitleState extends MusicBeatState
 			FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt, 0.7);
 
 			transitioning = true;
-			// FlxG.sound.music.stop();
-
-			new FlxTimer().start(2, function(tmr:FlxTimer)
-			{
+			 FlxG.sound.music.stop();
+			//Uncomment to re-enable version check
+			//new FlxTimer().start(2, function(tmr:FlxTimer)
+			//{
 				// Check if version is outdated
 
-				var version:String = "v" + Application.current.meta.get('version');
+			//	var version:String = "v" + Application.current.meta.get('version');
 
-				if (version.trim() != NGio.GAME_VER_NUMS.trim() && !OutdatedSubState.leftState)
-				{
-					trace('OLD VERSION!');
-					trace('old ver');
-					trace(version.trim());
-					trace('cur ver');
-					trace(NGio.GAME_VER_NUMS.trim());
-					FlxG.switchState(new OutdatedSubState());
-				}
-				else
-				{
+			//	if (version.trim() != NGio.GAME_VER_NUMS.trim() && !OutdatedSubState.leftState)
+			//	{
+			//		trace('OLD VERSION!');
+			//		trace('old ver');
+			//		trace(version.trim());
+			//		trace('cur ver');
+			//		trace(NGio.GAME_VER_NUMS.trim());
+			//		FlxG.switchState(new OutdatedSubState());
+			//	}
+			//	else
+			//	{
 					FlxG.switchState(new MainMenuState());
-				}
-			});
+			//	}
+		//	});
 			// FlxG.sound.play('assets/music/titleShoot' + TitleState.soundExt, 0.7);
 		}
 

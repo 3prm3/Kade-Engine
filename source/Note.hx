@@ -23,7 +23,7 @@ class Note extends FlxSprite
 	public var isSustainNote:Bool = false;
 
 	public var noteScore:Float = 1;
-
+	//swagWidth can change how seperated the arrows are
 	public static var swagWidth:Float = 160 * 0.7;
 	public static var PURP_NOTE:Int = 0;
 	public static var GREEN_NOTE:Int = 2;
@@ -104,7 +104,7 @@ class Note extends FlxSprite
 		{
 			case 0:
 				x += swagWidth * 0;
-				animation.play('purpleScroll');
+				animation.play('purpleScroll') ;
 			case 1:
 				x += swagWidth * 1;
 				animation.play('blueScroll');

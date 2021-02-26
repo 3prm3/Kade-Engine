@@ -625,8 +625,8 @@ class PlayState extends MusicBeatState
 		doof.finishThing = startCountdown;
 
 		Conductor.songPosition = -5000;
-
-		strumLine = new FlxSprite(0, 50).makeGraphic(FlxG.width, 10);
+		//Sets strumLine (grey arrows) to near the health bar
+		strumLine = new FlxSprite(0, 500).makeGraphic(FlxG.width, 10);
 		strumLine.scrollFactor.set();
 
 		strumLineNotes = new FlxTypedGroup<FlxSprite>();
@@ -1161,7 +1161,7 @@ class PlayState extends MusicBeatState
 			{
 				babyArrow.y -= 10;
 				babyArrow.alpha = 0;
-				FlxTween.tween(babyArrow, {y: babyArrow.y + 10, alpha: 1}, 1, {ease: FlxEase.circOut, startDelay: 0.5 + (0.2 * i)});
+				FlxTween.tween(babyArrow, {y: babyArrow.y + 10, alpha: 1}, 1, {ease: FlxEase.circOut, startDelay: 0.5 + (0.2 * i)}); //what do?
 			}
 
 			babyArrow.ID = i;
@@ -1170,8 +1170,9 @@ class PlayState extends MusicBeatState
 			{
 				playerStrums.add(babyArrow);
 			}
-
+			
 			babyArrow.animation.play('static');
+			// Grey Note x Pos
 			babyArrow.x += 50;
 			babyArrow.x += ((FlxG.width / 2) * player);
 
@@ -1508,9 +1509,12 @@ class PlayState extends MusicBeatState
 					daNote.visible = true;
 					daNote.active = true;
 				}
-
-				daNote.y = (strumLine.y - (Conductor.songPosition - daNote.strumTime) * (0.45 * FlxMath.roundDecimal(SONG.speed, 2)));
-
+				
+				//daNote.strumTime separates notes
+				//Conductor.songPosition controls the scrolling
+				//Changing a - to a + make note go up to down :)
+				daNote.y = (strumLine.y + (Conductor.songPosition - daNote.strumTime) * (0.45 * FlxMath.roundDecimal(SONG.speed, 2)));
+				//daNote.y = 1;
 				// i am so fucking sorry for this if condition
 				if (daNote.isSustainNote
 					&& daNote.y + daNote.offset.y <= strumLine.y + Note.swagWidth / 2
@@ -1560,22 +1564,22 @@ class PlayState extends MusicBeatState
 
 				// WIP interpolation shit? Need to fix the pause issue
 				// daNote.y = (strumLine.y - (songTime - daNote.strumTime) * (0.45 * PlayState.SONG.speed));
-
-				if (daNote.y < -daNote.height)
-				{
-					if (daNote.tooLate || !daNote.wasGoodHit)
-					{
-						health -= 0.0475;
-						vocals.volume = 0;
-					}
-
-					daNote.active = false;
-					daNote.visible = false;
-
-					daNote.kill();
-					notes.remove(daNote, true);
-					daNote.destroy();
-				}
+				//HP BROKE LOL 
+				//if (daNote.y > daNote.height)
+				//{
+//					if (daNote.tooLate || !daNote.wasGoodHit)
+//					{
+//						health -= 0.0475;
+//						vocals.volume = 0;
+//					}
+//
+//					daNote.active = false;
+//					daNote.visible = false;
+//
+				//	daNote.kill();
+				//	notes.remove(daNote, true);
+				//	daNote.destroy();
+				//}
 			});
 		}
 

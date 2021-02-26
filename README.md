@@ -1,3 +1,9 @@
+# Friday Night Funkin Flipped
+Literally just changes the game so that notes come from the top rather than the bottom
+
+
+
+# Original ReadME
 # Friday Night Funkin
 
 This is the repository for Friday Night Funkin, a game originally made for Ludum Dare 47 "Stuck In a Loop".
