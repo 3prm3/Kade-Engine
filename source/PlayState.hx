@@ -1514,13 +1514,14 @@ class PlayState extends MusicBeatState
 				//Conductor.songPosition controls the scrolling
 				//Changing a - to a + make note go up to down :)
 				daNote.y = (strumLine.y + (Conductor.songPosition - daNote.strumTime) * (0.45 * FlxMath.roundDecimal(SONG.speed, 2)));
-				//daNote.y = 1;
+
 				// i am so fucking sorry for this if condition
 				if (daNote.isSustainNote
 					&& daNote.y + daNote.offset.y <= strumLine.y + Note.swagWidth / 2
 					&& (!daNote.mustPress || (daNote.wasGoodHit || (daNote.prevNote.wasGoodHit && !daNote.canBeHit))))
 				{
-					var swagRect = new FlxRect(0, strumLine.y + Note.swagWidth / 2 - daNote.y, daNote.width * 2, daNote.height * 2);
+				// + daNote.y fixes sustain notes kinda but breaks sustains on the left side
+					var swagRect = new FlxRect(0, strumLine.y + Note.swagWidth / 2 + daNote.y, daNote.width * 2, daNote.height * 2);
 					swagRect.y /= daNote.scale.y;
 					swagRect.height -= swagRect.y;
 
@@ -1564,22 +1565,22 @@ class PlayState extends MusicBeatState
 
 				// WIP interpolation shit? Need to fix the pause issue
 				// daNote.y = (strumLine.y - (songTime - daNote.strumTime) * (0.45 * PlayState.SONG.speed));
-				//HP BROKE LOL 
-				//if (daNote.y > daNote.height)
-				//{
-//					if (daNote.tooLate || !daNote.wasGoodHit)
-//					{
-//						health -= 0.0475;
-//						vocals.volume = 0;
-//					}
-//
-//					daNote.active = false;
-//					daNote.visible = false;
-//
-				//	daNote.kill();
-				//	notes.remove(daNote, true);
-				//	daNote.destroy();
-				//}
+				//HP fixed :) i think. strumLine is on y 500 so if the note's y value is greater than 600 it will drain hp
+				if (daNote.y > 600)
+				{
+					if (daNote.tooLate || !daNote.wasGoodHit)
+					{
+						health -= 0.0475;
+						vocals.volume = 0;
+					}
+
+					daNote.active = false;
+					daNote.visible = false;
+
+					daNote.kill();
+					notes.remove(daNote, true);
+					daNote.destroy();
+				}
 			});
 		}
 
